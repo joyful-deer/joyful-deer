@@ -10,6 +10,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Open Sans', sans-serif; 
   padding: 20px;
   background-color: ${colors.celadon};
   color: ${colors.slategray};
@@ -17,6 +18,7 @@ const Button = styled.button`
   font-size: 20px;
   width: 200px;
   margin-top: 40px;
+  border-radius: 4px;
 `
 
 const IndexPage = () => {
@@ -29,7 +31,7 @@ const IndexPage = () => {
   return (
     <Layout>
       {result ? <H1>{result}</H1> : <LoadingSpinner />}
-      <Button onClick={() => setResult(generator())}>Go for it</Button>
+      <Button onClick={() => setResult(generator())}>Next</Button>
     </Layout>
   )
 }
