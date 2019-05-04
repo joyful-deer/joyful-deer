@@ -1,16 +1,29 @@
-/**
- * Layout component that queries for data
- * with Gatsby's StaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/static-query/
- */
+import React from 'react'
+import Helmet from 'react-helmet'
+import PropTypes from 'prop-types'
+import { StaticQuery, graphql } from 'gatsby'
+import { createGlobalStyle } from 'styled-components'
+import Header from './header'
+import colors from '../colors'
+import loadingCSS from '../loading.css'
+import styled from "styled-components"
 
-import React from "react"
-import PropTypes from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+const GlobalStyle = createGlobalStyle`
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: ${colors.font};
+  background-color: ${colors.background};
+}
+`
 
-import Header from "./header"
-import "./layout.css"
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px 0;
+`
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -19,13 +32,22 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+            description
           }
         }
       }
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Helmet>
+          <link rel="stylesheet" type="text/css" src={loadingCSS} />
+          <link rel="logo" href="imges/favicon.ico" type="image/x-icon" />
+        </Helmet>
+        <GlobalStyle />
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          description={data.site.siteMetadata.description}
+        />
         <div
           style={{
             margin: `0 auto`,
@@ -34,12 +56,12 @@ const Layout = ({ children }) => (
             paddingTop: 0,
           }}
         >
-          <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
-          </footer>
+          <main>
+            <Container>
+              {children}
+            </Container>
+            </main>
+          <footer />
         </div>
       </>
     )}
