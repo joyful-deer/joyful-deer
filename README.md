@@ -1,5 +1,7 @@
 # Name generator
 
+[![CircleCI](https://circleci.com/gh/joyful-deer/joyful-deer/tree/master.svg?style=svg)](https://circleci.com/gh/joyful-deer/joyful-deer/tree/master)
+
 Small app that generates random strings :sweat_smile:. Basically this app was done to test following tehnologies_
 
 - [Gatsby.js](https://www.gatsbyjs.org/)
