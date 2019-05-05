@@ -61,4 +61,4 @@ const FRUITS = [
   'Yuzu',
 ]
 
-export default FRUITS
+module.exports = FRUITS

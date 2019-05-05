@@ -41,4 +41,4 @@ const MOODS = [
   'Weird',
 ]
 
-export default MOODS
+module.exports = MOODS

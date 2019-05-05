@@ -24,14 +24,18 @@ const Button = styled.button`
 const IndexPage = () => {
   const [result, setResult] = useState('')
 
+  async function fetchData() {
+    const result = await generator()
+    setResult(result)
+  }
   useEffect(() => {
-    setResult(generator())
+    fetchData()
   }, [])
 
   return (
     <Layout>
       {result ? <H1>{result}</H1> : <LoadingSpinner />}
-      <Button onClick={() => setResult(generator())}>Next</Button>
+      <Button onClick={fetchData}>Next</Button>
     </Layout>
   )
 }

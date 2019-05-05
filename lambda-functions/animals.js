@@ -22,4 +22,5 @@ const ANIMALS = [
   'Crocodile',
 ]
 
-export default ANIMALS
+module.exports = ANIMALS
+

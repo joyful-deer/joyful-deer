@@ -68,4 +68,4 @@ const COLORS = [
   'Yellow',
 ]
 
-export default COLORS
+module.exports = COLORS
