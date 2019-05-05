@@ -1,5 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import cat from '../images/noun_Cat_2396951_000000.svg'
+import bear from '../images/noun_Bear_2396954_000000.svg'
+import panda from '../images/noun_Panda_1951473_000000.svg'
+import lion from '../images/noun_Lion_2396984_000000.svg'
+import monkey from '../images/noun_Monkey_1951430_000000.svg'
 
 const Img = styled.img`
   display: flex;
@@ -18,11 +23,11 @@ const ImageContainer = styled.div`
 
 const LoadingSpinner = () => (
   <ImageContainer>
-    <Img src='images/noun_Cat_2396951_000000.svg' className="ld ld-bounce" delay={-0.0} />
-    <Img src='images/noun_Bear_2396954_000000.svg' className="ld ld-bounce" delay={-0.05} />
-    <Img src='images/noun_Panda_1951473_000000.svg' className="ld ld-bounce" delay={-0.1} />
-    <Img src='images/noun_Lion_2396984_000000.svg' className="ld ld-bounce" delay={-0.15} />
-    <Img src='images/noun_Monkey_1951430_000000.svg' className="ld ld-bounce" delay={-0.2} />
+    <Img src={cat} className="ld ld-bounce" delay={-0.0} />
+    <Img src={bear} className="ld ld-bounce" delay={-0.05} />
+    <Img src={panda} className="ld ld-bounce" delay={-0.1} />
+    <Img src={lion} className="ld ld-bounce" delay={-0.15} />
+    <Img src={monkey} className="ld ld-bounce" delay={-0.2} />
   </ImageContainer>
 )
 

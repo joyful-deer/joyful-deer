@@ -4,7 +4,7 @@ import colors from '../colors'
 
 const Img = styled.img`
   display: flex;
-  width: 300px;
+  width: 200px;
   margin: 0 auto;
   fill: ${colors.slategray};
 `
@@ -14,7 +14,7 @@ const ImageContainer = styled.div`
   align-items: center;
 `
 
-const Image = ({src}) => (
+const Image = ({ src }) => (
   <ImageContainer>
     <Img src={src} />
   </ImageContainer>

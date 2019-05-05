@@ -6,7 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 import Header from './header'
 import colors from '../colors'
 import loadingCSS from '../loading.css'
-import styled from "styled-components"
+import styled from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -23,6 +23,32 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 100px 0;
+
+  @media (max-width: 700px) {
+    margin: 50px 0;
+  }
+`
+
+const Footer = styled.footer`
+  background-color: ${colors.cadetgray};
+  height: 70px;
+  padding: 20px 30px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+`
+
+const Quote = styled.div`
+  display: flex;
+  font-style: italic;
+  font-family: 'Open Sans', sans-serif;
+  color: ${colors.white};
+  margin: 0 auto;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 `
 
 const Layout = ({ children }) => (
@@ -48,21 +74,12 @@ const Layout = ({ children }) => (
           siteTitle={data.site.siteMetadata.title}
           description={data.site.siteMetadata.description}
         />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0px 1.0875rem 1.45rem`,
-            paddingTop: 0,
-          }}
-        >
-          <main>
-            <Container>
-              {children}
-            </Container>
-            </main>
-          <footer />
-        </div>
+        <main>
+          <Container>{children}</Container>
+        </main>
+        <Footer>
+          <Quote>"One swallow doesn't make a summer"</Quote>
+        </Footer>
       </>
     )}
   />

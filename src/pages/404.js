@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Image from '../components/Image'
+import styled from 'styled-components'
+import Image from '../components/image'
 import Layout from '../components/layout'
 import H1 from '../components/H1'
 import { getRandomInt } from '../utils'
@@ -14,19 +15,25 @@ import penguin from '../images/noun_Penguin_1951461_000000.svg'
 import rabbit from '../images/noun_Rabbit_2396952_000000.svg'
 
 const animalsMap = [
-  { image: bear, name: 'surprised bear'},
-  { image: cat, name: 'neutral cat'},
-  { image: lion, name: 'happy lion'},
-  { image: mongoose, name: 'content mongoose'},
-  { image: monkey, name: 'dumb monkey'},
-  { image: panda, name: 'sad panda'},
-  { image: penguin, name: 'puffy penguin'},
-  { image: rabbit, name: 'quilty rabbit'},
-  { image: zepra, name: 'hungry zepra'}
+  { image: bear, name: 'surprised bear' },
+  { image: cat, name: 'neutral cat' },
+  { image: lion, name: 'happy lion' },
+  { image: mongoose, name: 'content mongoose' },
+  { image: monkey, name: 'dumb monkey' },
+  { image: panda, name: 'sad panda' },
+  { image: penguin, name: 'puffy penguin' },
+  { image: rabbit, name: 'quilty rabbit' },
+  { image: zepra, name: 'hungry zepra' },
 ]
 
+const P = styled.p`
+  padding-bottom: 20px;
+`
+
 const NotFoundPage = () => {
-  const [animal, setAnimal] = useState(animalsMap[getRandomInt(animalsMap.length)])
+  const [animal, setAnimal] = useState(
+    animalsMap[getRandomInt(animalsMap.length)]
+  )
 
   useEffect(() => {
     setAnimal(animalsMap[getRandomInt(animalsMap.length)])
@@ -36,9 +43,8 @@ const NotFoundPage = () => {
     <Layout>
       <H1>There is nothing here</H1>
       <Image src={animal.image} />
-      {animal && <p>But have a {animal.name} instead</p>}
+      {animal && <P>But have a {animal.name} instead</P>}
     </Layout>
-
   )
 }
 

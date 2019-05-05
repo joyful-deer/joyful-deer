@@ -8,7 +8,13 @@ const H1 = styled.h1`
   font-size: 70px;
   line-height: 70px;
   color: ${colors.slategray};
-  margin: 30px 0;
+  margin: 30px 10px;
+  text-align: center;
+
+  @media (max-width: 700px) {
+    font-size: 40px;
+    line-height: 40px;
+  }
 `
 
 export default H1

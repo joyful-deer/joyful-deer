@@ -10,7 +10,7 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Open Sans', sans-serif; 
+  font-family: 'Open Sans', sans-serif;
   padding: 20px;
   background-color: ${colors.celadon};
   color: ${colors.slategray};
