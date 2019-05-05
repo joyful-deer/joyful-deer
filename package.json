@@ -1,5 +1,5 @@
 {
-  "name": "name-generator",
+  "name": "joyfull-deer",
   "private": true,
   "description": "Yet another name generator",
   "version": "0.1.0",
@@ -24,7 +24,18 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
-    "prettier": "^1.17.0"
+    "@ljharb/eslint-config": "^13.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-strict": "^14.0.1",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-node": "^9.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "eslint-plugin-standard": "^4.0.0"
   },
   "keywords": [
     "gatsby"
@@ -33,16 +44,11 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "api:develop": "cd lambda-functions && sls offline start --port 4000 --cacheInvalidationRegex 'node_modules|models'",
-    "format": "prettier --write src/**/*.{js,jsx}",
+    "lint": "npx eslint src/ ",
     "start": "npm run develop",
-    "serve": "gatsby serve"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "serve": "gatsby serve",
+    "api:develop": "cd lambda-functions && sls offline start --port 4000 --cacheInvalidationRegex 'node_modules|models'",
+    "api:lint": "cd lambda-functions && npm run lint",
+    "lint:all": "npm run lint && npm run api:lint"
   }
 }

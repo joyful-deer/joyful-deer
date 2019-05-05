@@ -1,12 +1,11 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import styled, { createGlobalStyle } from 'styled-components'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import { createGlobalStyle } from 'styled-components'
 import Header from './header'
 import colors from '../colors'
 import loadingCSS from '../loading.css'
-import styled from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -78,7 +77,7 @@ const Layout = ({ children }) => (
           <Container>{children}</Container>
         </main>
         <Footer>
-          <Quote>"One swallow doesn't make a summer"</Quote>
+          <Quote>{'"One swallow does\'t make a summer"'}</Quote>
         </Footer>
       </>
     )}

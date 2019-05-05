@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Image from '../components/image'
 import Layout from '../components/layout'
 import H1 from '../components/H1'
-import { getRandomInt } from '../utils'
+import getRandomInt from '../utils'
 import bear from '../images/noun_Bear_2396954_000000.svg'
 import cat from '../images/noun_Cat_2396951_000000.svg'
 import lion from '../images/noun_Lion_2396984_000000.svg'
@@ -32,7 +32,7 @@ const P = styled.p`
 
 const NotFoundPage = () => {
   const [animal, setAnimal] = useState(
-    animalsMap[getRandomInt(animalsMap.length)]
+    animalsMap[getRandomInt(animalsMap.length)],
   )
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const NotFoundPage = () => {
     <Layout>
       <H1>There is nothing here</H1>
       <Image src={animal.image} />
-      {animal && <P>But have a {animal.name} instead</P>}
+      {animal && <P>{`But have a ${animal.name} instead`}</P>}
     </Layout>
   )
 }

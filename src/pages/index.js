@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import generator from '../names/generator'
 import Layout from '../components/layout'
-import styled from 'styled-components'
 import colors from '../colors'
 import LoadingSpinner from '../components/loading_spinner'
 import H1 from '../components/H1'
@@ -25,8 +25,8 @@ const IndexPage = () => {
   const [result, setResult] = useState('')
 
   async function fetchData() {
-    const result = await generator()
-    setResult(result)
+    const response = await generator()
+    setResult(response)
   }
   useEffect(() => {
     fetchData()

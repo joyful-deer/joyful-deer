@@ -1,4 +1,5 @@
 import React from 'react'
+import Proptypes from 'prop-types'
 import styled from 'styled-components'
 import colors from '../colors'
 
@@ -19,4 +20,9 @@ const Image = ({ src }) => (
     <Img src={src} />
   </ImageContainer>
 )
+
+Image.propTypes = {
+  src: Proptypes.string.isRequired,
+}
+
 export default Image

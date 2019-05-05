@@ -1,6 +1,6 @@
-// index.js
 const serverless = require('serverless-http')
 const express = require('express')
+
 const app = express()
 
 const MOODS = require('./moods')
@@ -27,9 +27,9 @@ app.get('/get-name', function (req, res) {
 
   const prefix = prefixList[getRandomInt(prefixList.length)]
   const postfix = postfixList[getRandomInt(postfixList.length)]
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.send(`${prefix}-${postfix}`)
 })
 
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app)
