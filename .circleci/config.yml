@@ -1,0 +1,113 @@
+defaults: &defaults
+  docker:
+    - image: circleci/node:latest
+
+version: 2
+jobs:
+  pre-build:
+    working_directory: ~/joyful-deer
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/joyful-deer/
+      - attach_workspace:
+          at: ~/joyful-deer/
+
+      - restore_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+
+      - run: npm install
+
+      - run: npm rebuild
+
+      - save_cache:
+          key: node-v2-{{ checksum "package.json" }}-{{ arch }}
+          paths:
+            - node_modules
+
+      - persist_to_workspace:
+          root: ~/joyful-deer
+          paths:
+            - node_modules
+
+  build:
+    working_directory: ~/joyful-deer
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/joyful-deer/
+      - attach_workspace:
+          at: ~/joyful-deer
+      - run:
+          command: |
+            echo $GATSBY_API_URL
+            GATSBY_API_URL=$GATSBY_API_URL ./node_modules/.bin/gatsby build
+
+  gatsby-deploy:
+    working_directory: ~/joyful-deer
+    <<: *defaults
+    steps:
+      - checkout:
+          path: ~/joyful-deer/
+      - attach_workspace:
+          at: ~/joyful-deer
+      - run:
+          command: |
+            sudo apt-get -y -qq install awscli
+            aws configure --profile gatsby set aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure --profile gatsby set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            aws configure --profile gatsby list
+            npm run build
+            aws s3 sync public/ $AWS_BUCKET_NAME --delete --profile gatsby
+
+  build-lambda:
+    working_directory: ~/joyful-deer
+    docker:
+      - image: circleci/node:8.10
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            cd lambda-functions
+            sudo npm i -g serverless
+            npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-
+
+      - run:
+          command: |
+            cd lambda-functions
+            sls config credentials --provider aws --key $LAMBDA_AWS_KEY --secret $LAMBDA_AWS_SECRET --profile lambda-profile --overwrite
+            sls deploy --stage dev --aws-profile lambda-profile
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - pre-build
+      - build:
+          requires:
+            - pre-build
+      - gatsby-deploy:
+          requires:
+            - build
+      - build-lambda:
+          requires:
+            - gatsby-deploy
+          filters:
+            branches:
+              only:
+                - master
